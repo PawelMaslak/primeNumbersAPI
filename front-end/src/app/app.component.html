@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="api-call">
+    <div class="input">
+      <form (ngSubmit)="onSubmit()" #apiForm="ngForm">
+        <div class="form-group">
+          <label for="number" class="control-label">Number</label>
+          <input type="number" min="1" max="100" pattern="\d*" required class="form-control" [(ngModel)]="model.number"
+            name="number" id="number" #number="ngModel" placeholder="Enter number between 1 and 100">
+          <span class="help-block" *ngIf="number.invalid && apiForm.dirty">Number has to be between 1 and 100 without
+            decimal points.</span>
+        </div>
+        <div class="submit">
+          <button class="btn btn-primary" [ngClass]="apiForm.valid ? '': 'disabled'">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="output">
+      <div class="output-numbers" *ngIf="apiResponse.primeNumbers">
+        <p>Prime numbers which are less than input number {{model.number}} : {{apiResponse.primeNumbers}}</p>
+      </div>
+    </div>
+  </div>
+</div>
